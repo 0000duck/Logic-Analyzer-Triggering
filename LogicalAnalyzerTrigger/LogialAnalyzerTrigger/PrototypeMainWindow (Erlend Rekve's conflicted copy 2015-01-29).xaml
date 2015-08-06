@@ -1,0 +1,11 @@
+﻿<Window x:Class="LogialAnalyzerTrigger.PrototypeMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PrototypeMainWindow" Height="300" Width="300" Loaded="Window_Loaded">
+    <Grid>
+        <Button x:Name="AddStatment" Content="Add Statement" HorizontalAlignment="Left" Margin="10,218,0,9.8" Width="88" Click="AddStatement"/>
+        <Button Content="Run" HorizontalAlignment="Left" Margin="210,218,0,0" VerticalAlignment="Top" Width="75" Click="Run" Height="45"/>
+        <Label x:Name="Label1" Content="" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top" Height="126" Width="275"/>
+
+    </Grid>
+</Window>

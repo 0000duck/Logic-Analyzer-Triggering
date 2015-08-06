@@ -1,0 +1,87 @@
+﻿<Window x:Class="LogialAnalyzerTrigger.Views.StatementWindow3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="StatementWindow3" Height="300" Width="400">
+    
+    <Window.Resources>
+        <Style x:Key="ComboxStyle" TargetType="ComboBox">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TextboxStyle" TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TextblockStyle" TargetType="TextBlock">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>    
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="76*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+
+            <ListBox ItemsSource="{Binding Path=ObservableStatements}" Grid.Row="1" Grid.Column="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="100" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                    </Grid.RowDefinitions>
+                                    <ComboBox Grid.Column="1" ItemsSource="{Binding Path = AvalibleLogicalOperators}"  IsEnabled="{Binding Path=IsAlgebraOperatorVisible}" SelectedValue="{Binding Path=AlgebraOperator}" Style="{StaticResource ComboxStyle}" />
+                                    <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path = AvalibleExpressions}" SelectedValue="{Binding Path=ExpressionValue}" />
+                                    <!-- Regular Statement -->
+                                    <ComboBox IsEnabled="{Binding Path=IsRegularStatement}" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path = AvalibleSignals}" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Path=Signal}" Style="{StaticResource ComboxStyle}" />
+                                    <ComboBox IsEnabled="{Binding Path=IsRegularStatement}" Grid.Column="2" Grid.Row="1" IsEditable="True" ItemsSource="{Binding Path = AvalibleSignals}" DisplayMemberPath="Name"  SelectedValuePath="Name"  Text="{Binding Path=SignalOrValue}" Style="{StaticResource ComboxStyle}" />
+                                    
+                                    <!-- Timed Statetemnt -->
+                                    <TextBlock IsEnabled="{Binding Path=IsTimedStatement}" Grid.Column="0" Grid.Row="1" Text="Timer" Style="{StaticResource TextblockStyle}" />
+                                    <TextBox IsEnabled="{Binding Path=IsTimedStatement}" Grid.Column="2" Grid.Row="1" Text="{Binding Path=SignalOrValue}" Style="{StaticResource TextboxStyle}" />
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Content="Add Regular Expression " Command="{Binding AddRegularExpressionCommand}"/>
+            <Button Grid.Column="1" Content="Add Time Expression" Command="{Binding AddTimeExpressionCommand}"/>
+            <Button Grid.Column="0" Grid.Row="1" Content="Remove Expression" Command="{Binding RemoveExpressionCommand}" />
+            <Button Grid.Column="1" Grid.Row="1" Content="Save" Command="{Binding SaveStatementCommand}" Click="Button_Click" />
+        </Grid>
+    
+    </Grid>
+</Window>

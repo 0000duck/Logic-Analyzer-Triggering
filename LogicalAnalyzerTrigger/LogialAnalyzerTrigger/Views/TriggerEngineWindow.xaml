@@ -1,0 +1,52 @@
+﻿<Window x:Class="LogialAnalyzerTrigger.Views.TriggerEngineWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Trigger Setup" Height="354.4" Width="459.2"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+         xmlns:vm="clr-namespace:LogialAnalyzerTrigger.ViewModels">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*" MaxHeight="30"/>
+            <RowDefinition Height="110*"/>
+            <RowDefinition Height="30" MaxHeight="30"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Tigger View" Grid.ColumnSpan="3" BorderBrush="#FF080808" BorderThickness="1"/>
+            
+        <ScrollViewer Grid.Column="1" Grid.Row="1">
+            <TextBlock Text="{Binding TriggerInfoString, Mode=OneWay}">
+            </TextBlock>
+        </ScrollViewer>
+
+        <ListBox ItemsSource="{Binding Path=ObservableTriggers}" Grid.Row="1" Grid.Column="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Name}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+         
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Add Trigger" Command="{Binding AddNewTriggerCommand}"/>
+            <Button Content="Remove Trigger" Grid.Column="1" Command="{Binding RemoveTriggerCommand}" />
+            <Button Content="Save" Grid.Column="2" Command="{Binding SaveCommand}" Click="Button_Click"/>
+        </Grid>
+
+    </Grid>
+</Window>

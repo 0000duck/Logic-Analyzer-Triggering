@@ -1,0 +1,17 @@
+﻿<Window x:Name="Main_Window" x:Class="LogialAnalyzerTrigger.ConfigTriggers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SetUpTriggers" Height="464.242" Width="654.149" Loaded="Main_Window_Loaded">
+    <Grid>
+        <Grid x:Name="RootPanel" Margin="10,10,10.2,10.2"/>
+        <TabControl x:Name="TabController" Margin="10,10,10.2,10.2">
+            <TabItem Header="TabItem" Visibility="Collapsed">
+                <Grid x:Name="MainPanelTabItem" Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="TabItem" Visibility="Collapsed">
+                <Grid x:Name="AddEventPanelTabItem" Background="#FFE5E5E5"/>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
